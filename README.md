@@ -18,13 +18,13 @@ router = odwc.Coordinator(students, drivers)
 ```
 The `Coordinator` constructor takes a list of students and a list of drivers. These are described in the **Data Types** section below.
 
-Next, calculate the scheduals.
+Next, calculate the schedules.
 ```python3
-scheduals = router.calculate()
+schedules = router.calculate()
 ```
-THis will return a dictionary with the names of the drivers as keys and their scheduals as a list for the value.
+THis will return a dictionary with the names of the drivers as keys and their schedules as a list for the value.
 
-A key with the name `failed` will also be returned. This may contain a list of `Student` objects (described below). These are the students that could not be automatically schedualed and require manual schedualing.
+A key with the name `failed` will also be returned. This may contain a list of `Student` objects (described below). These are the students that could not be automatically scheduled and require manual scheduling.
 
 ## Data Types
 These are the various types and formats that are used.
