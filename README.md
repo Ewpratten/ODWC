@@ -11,6 +11,11 @@ In your python project, include the library as follows:
 import ODWC as odwc
 ```
 
+Now, set your [Google maps api](https://developers.google.com/maps/documentation/javascript/get-api-key) key:
+```python3
+odwc.key = "<your key here>"
+```
+
 ## Usage
 First, create a `Coordinator` (aka. router):
 ```python3
