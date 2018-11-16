@@ -150,7 +150,7 @@ class Coordinator(object):
 					driver.cooldown -= 0.5
 					driver.busy = False if driver.cooldown <= 0.0 else True
 			
-			print(hour)
+			# print(hour)
 			hour += 0.5
 		
 		# Add a list of appointments that can not be achived to the output
