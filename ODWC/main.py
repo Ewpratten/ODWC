@@ -45,9 +45,8 @@ def parseDrivers(drivers: list):
 	for driver in drivers:
 		yield Driver(driver["name"], driver["location"])
 
-def getDistance(loc1, loc2):
-	loc1 = urllib.parse.quote_plus(loc1.encode())
-	loc2 = urllib.parse.quote_plus(loc2.encode())
+def getDistance(loc1: str, loc2: str) -> int:
+	loc1, loc2= urllib.parse.quote_plus(loc1.encode()), urllib.parse.quote_plus(loc2.encode())
 	data = requests.get("https://maps.googleapis.com/maps/api/directions/json?origin="+ loc1 +"&destination="+ loc2 +"&key="+ str(key)).json()
 	time = 0
 	
@@ -60,7 +59,7 @@ def timeToFloat(time:str) -> float:
 	return float(str(time.split(":")[0]+ "." +str(float(time_float(time.split(":")[1]))).split(".")[0]))
 
 def secondsToTime(seconds:int) -> str:
-	m, s = divmod(seconds, 60)
+	m, _ = divmod(seconds, 60)
 	h, m = divmod(m, 60)
 	return f"{h}:{m}"
 
@@ -68,6 +67,8 @@ def floatToTime(number:float) -> str:
 	hours = str(number).split(".")[0]
 	mins = str(float(float_time(str(number).split(".")[1]))).split(".")[0]
 	raw_time =  f"{hours}:{mins}"
+	
+	# Add missing 0
 	if raw_time[len(raw_time) -  2] == ":":
 		raw_time += "0"
 	return raw_time
@@ -84,7 +85,7 @@ class Coordinator(object):
 		for student in self.students:
 			student.time = timeToFloat(student.time)
 		
-	def assignDriver(self):
+	def __assignDriver(self):
 		job = self.students[0]
 		
 		closest_ticker, closest_name = 1000000, ""
@@ -138,7 +139,7 @@ class Coordinator(object):
 				try:
 					if self.students[0].time == float(hour) and self.students[0] != previous_student:
 						previous_student = self.students[0]
-						self.assignDriver()
+						self.__assignDriver()
 					else:
 						break
 				except:
