@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='ODWC',
-    version='1.0rc3',
+    version='1.0rc4',
     description='Open Driver Waypoint Coordinator',
     url='https://github.com/Ewpratten/ODWC',
     author='Evan Pratten',
